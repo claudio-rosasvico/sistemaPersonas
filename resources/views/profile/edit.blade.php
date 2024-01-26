@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('User Profile'), 'pageSlug' => 'profile'])
+@extends('layouts.app', ['page' => __('Perfil de Usuario'), 'pageSlug' => 'profile'])
 
 @section('content')
     <div class="row">
@@ -83,11 +83,11 @@
                             </p>
                         </div>
                     </p>
-                    <div class="card-description">
+                    {{-- <div class="card-description">
                         {{ __('Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...') }}
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="card-footer">
+                {{-- <div class="card-footer">
                     <div class="button-container">
                         <button class="btn btn-icon btn-round btn-facebook">
                             <i class="fab fa-facebook"></i>
@@ -99,7 +99,7 @@
                             <i class="fab fa-google-plus"></i>
                         </button>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

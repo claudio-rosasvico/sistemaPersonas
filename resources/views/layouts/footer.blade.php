@@ -2,9 +2,9 @@
     <div class="container-fluid">
         <ul class="nav">
             <li class="nav-item">
-                <a href="#" target="blank" class="nav-link">
+                {{-- <a href="#" target="blank" class="nav-link">
                     {{ __('REDES') }}
-                </a>
+                </a> --}}
             </li>
             {{-- <li class="nav-item">
                 <a href="https://updivision.com" target="blank" class="nav-link">

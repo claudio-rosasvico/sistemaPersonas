@@ -17839,17 +17839,17 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .login-page .card-login .card-header {
-  padding: 0 0 100px;
-  overflow: hidden;
+  padding: 0 0 0;
+  
 }
 
-.login-page .card-login .card-header img {
+/* .login-page .card-login .card-header img {
   position: absolute;
-}
+} */
 
-.login-page .card-login .input-group:last-child {
+/* .login-page .card-login .input-group:last-child {
   margin-bottom: 40px;
-}
+} */
 
 .login-page .link {
   font-size: 10px;
@@ -17857,19 +17857,19 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .card-register .card-header {
-  padding: 0 0 65px;
-  overflow: hidden;
+  padding: 0 0 0;
   z-index: 1;
+  
 }
 
-.card-register .form-check {
+/* .card-register .form-check {
   margin-top: 20px;
   margin-left: 20px;
-}
+} */
 
 .card-register .card-footer {
   margin-bottom: 10px;
-  margin-top: 24px;
+  
 }
 
 .card-register.card-white .card-header .card-title {
@@ -17883,14 +17883,11 @@ Copyright (c) 2015 Daniel Eden
   color: #222a42;
   text-transform: lowercase;
   margin-left: -5px;
-  z-index: 1;
 }
 
-.card-register .card-img {
-  position: absolute;
-  left: 0;
-  top: -15%;
-  width: 70%;
+.card-header img {
+  margin-top: -40px;
+  width: 30%;
 }
 
 .full-page.register-page .info-horizontal {
