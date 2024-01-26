@@ -1,6 +1,9 @@
 $(document).ready(function () {
-
-    getLocalidades(9);
+    id_persona = $('#id_persona').val();
+    console.log(id_persona);
+    if(!id_persona){
+        getLocalidades(9);
+    }
     
     var descripciones = $('.table_descripcion');
     descripciones = descripciones.toArray();

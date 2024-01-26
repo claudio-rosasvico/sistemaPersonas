@@ -47,27 +47,20 @@ class PersonaController extends Controller
      */
     public function store(PersonaRequest $request)
     {
-        $persona = persona::create($request->all());
-    
-        if ($request->foto !== 'undefined') {
-            $foto = $request->file('foto');
-            $nombre_foto = ($request->nombre . '-' . $request->apellido . '-' . $persona->id . '.' . $foto->getClientOriginalExtension());
-            $foto->storeAs('/public/assets/img/perfil', $nombre_foto);
-
-            $persona->nombre_foto = $nombre_foto;
-            $persona->save();
-        } elseif ($request->url_img){
-
-            $url = $request->url_img;
-            $foto = Http::get($url);
-            $nombre_foto = $request->nombre . '-' . $request->apellido . '-' . $persona->id . '.' . pathinfo($url, PATHINFO_EXTENSION);
-            Storage::put('/public/assets/img/perfil/' . $nombre_foto, $foto);
-
-            $persona->nombre_foto = $nombre_foto;
-            $persona->save();
+        if ($request->id) {
+            $persona = persona::find($request->id);
+            $persona->update($request->all());
+            $id_persona = $request->id;
+        } else {
+            $persona = persona::create($request->all());
+            $id_persona = '';
         }
+        
+        if($request->foto || $request->url_img){
+            $this->cargarImagen($request, $persona);
+        };
 
-        return response()->json($persona);
+        return response()->json(['persona' => $persona, 'id_persona' => $id_persona]);
     }
 
     /**
@@ -83,7 +76,16 @@ class PersonaController extends Controller
      */
     public function edit(persona $persona)
     {
-        //
+        $data = [
+
+            'localidades' => localidad::all(),
+            'provincias'  => provincia::all(),
+            'cargos'      => tipoCargo::all(),
+            'nivelesCargo' => nivelCargo::all(),
+            'persona'   => $persona
+        ];
+
+        return view('personas.create', $data);
     }
 
     /**
@@ -99,7 +101,16 @@ class PersonaController extends Controller
      */
     public function destroy(persona $persona)
     {
-        //
+        $registros = $persona->registro;
+        foreach ($registros as $registro) {
+            $registro->delete();
+        }
+
+        $persona->delete();
+        Log::info('estoy destruyendo');
+        return redirect()
+            ->route('personas.index')
+            ->withStatus('Persona eliminada correctamente.');
     }
 
     public function getLocalidades($id_provincia)
@@ -110,7 +121,8 @@ class PersonaController extends Controller
         return response()->json($localidades);
     }
 
-    public function getPersona($id_persona){
+    public function getPersona($id_persona)
+    {
 
         $persona = persona::find($id_persona);
 
@@ -122,7 +134,7 @@ class PersonaController extends Controller
         $search = $request->search;
         if ($search) {
             $personas = persona::where('nombre', 'LIKE', '%' . $search . '%')
-                                ->orWhere('apellido', 'LIKE', '%' . $search . '%')->get();
+                ->orWhere('apellido', 'LIKE', '%' . $search . '%')->get();
         } else {
             $personas = persona::get();
         }
@@ -131,5 +143,25 @@ class PersonaController extends Controller
         $movil = view('personas.table-movil', compact('personas'))->render();
 
         return response()->json(['desktop' => $desktop, 'movil' => $movil]);
+    }
+
+    public function cargarImagen($request, $persona){
+        if ($request->foto !== 'undefined') {
+            $foto = $request->file('foto');
+            $nombre_foto = ($request->nombre . '-' . $request->apellido . '-' . $persona->id . '.' . $foto->getClientOriginalExtension());
+            $foto->storeAs('/public/assets/img/perfil', $nombre_foto);
+
+            $persona->nombre_foto = $nombre_foto;
+            $persona->save();
+        } elseif ($request->url_img) {
+
+            $url = $request->url_img;
+            $foto = Http::get($url);
+            $nombre_foto = $request->nombre . '-' . $request->apellido . '-' . $persona->id . '.' . pathinfo($url, PATHINFO_EXTENSION);
+            Storage::put('/public/assets/img/perfil/' . $nombre_foto, $foto);
+
+            $persona->nombre_foto = $nombre_foto;
+            $persona->save();
+        }
     }
 }

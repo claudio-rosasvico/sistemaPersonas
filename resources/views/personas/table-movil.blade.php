@@ -13,9 +13,15 @@
             "{{ isset($persona->cargo) && $persona->cargo->count() > 0? $persona->cargo->first()->nombre : 'Sin cargo actualmente' }}"
         </h6>
         <div class="row container justify-content-between mt-3">
-            <a href="{{ route('personas.show', $persona)  }}"> <i class="las la-search" style="font-size: 22px"></i></a>
-            <a href="{{ route('personas.edit', $persona)  }}"> <i class="las la-pen" style="font-size: 22px"></i></a>
-            <a href=""> <i class="lar la-trash-alt" style="font-size: 22px"></i></a>
+            <a href="{{ route('personas.show', $persona)  }}" class="btn-link"> <i class="las la-search" style="font-size: 22px"></i></a>
+        <a href="{{ route('personas.edit', $persona)  }}" class="btn-link"> <i class="las la-pen" style="font-size: 22px"></i></a>
+        <form action="{{ route('personas.destroy', $persona) }}" method="POST" style="display:inline;">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+            <button type="submit" class="btn-link">
+                <i class="lar la-trash-alt" style="font-size: 22px"></i>
+            </button>
+        </form>
         </div>
     </div>
 </div>

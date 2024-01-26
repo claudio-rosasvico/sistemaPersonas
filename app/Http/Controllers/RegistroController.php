@@ -87,7 +87,11 @@ class RegistroController extends Controller
      */
     public function destroy(registro $registro)
     {
-        //
+        $registro->delete();
+        Log::info('estoy destruyendo');
+        return redirect()
+            ->route('registros.index')
+            ->withStatus('Registro eliminado correctamente.');
     }
 
     public static function table(Request $request)

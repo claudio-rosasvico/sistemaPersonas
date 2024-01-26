@@ -41,7 +41,12 @@ function cargarPersona(){
         contentType: false,
         success: function (response) {
             console.log(response);
-            window.location.href = ( response.id);
+            console.log('id_perona: ' + response.id_persona);
+            if(response.id_persona){
+                window.location.href = ('../' + response.id_persona );
+            } else {
+                window.location.href = ( response.persona.id);
+            }
         }, error: function (response) {
             console.log('Error al intentar crearla');
             console.log(response);

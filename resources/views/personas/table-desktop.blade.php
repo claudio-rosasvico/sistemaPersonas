@@ -19,9 +19,16 @@
         {{ isset($persona->registro) && $persona->registro->count() > 0? $persona->registro->sortByDesc('created_at')->first()->created_at->format('d-m-Y') : 'No hay registros' }}
     </td>
     <td>
-        <a href="{{ route('personas.show', $persona)  }}"> <i class="las la-search" style="font-size: 22px"></i></a>
-        <a href=""> <i class="las la-pen" style="font-size: 22px"></i></a>
-        <a href=""> <i class="lar la-trash-alt" style="font-size: 22px"></i></a>
+        <a href="{{ route('personas.show', $persona)  }}" class="btn-link"> <i class="las la-search" style="font-size: 22px"></i></a>
+        <a href="{{ route('personas.edit', $persona)  }}" class="btn-link"> <i class="las la-pen" style="font-size: 22px"></i></a>
+        <form action="{{ route('personas.destroy', $persona) }}" method="POST" style="display:inline;">
+            {{ method_field('DELETE') }}
+            {{ csrf_field() }}
+            <button type="submit" class="btn-link">
+                <i class="lar la-trash-alt" style="font-size: 22px"></i>
+            </button>
+        </form>
+        {{-- <a href="{{ route('personas.destroy', $persona)  }}"> <i class="lar la-trash-alt" style="font-size: 22px"></i></a> --}}
     </td>
 </tr>
 @endforeach
