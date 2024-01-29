@@ -91,10 +91,10 @@
                             </div>
                         </div>
 
-                        <div>
+                        {{--<div>
                             <h4 class="mt-2">Cargo Actual</h4>
                         </div>
-                        <div class="row">
+                         <div class="row">
                             <div class="col-12 col-lg-3">
                                 <label for="id_tipo_cargo">Cargo</label>
                                 <select id="id_tipo_cargo" class="form-control" name="id_tipo_cargo">
@@ -129,7 +129,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <div class="container">
                                 <div class="form-group col-12">

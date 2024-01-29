@@ -31,7 +31,7 @@
                         <th style="width: 10%">Categoría</th>
                         <th style="width: 10%">Fecha</th>
                         <th>Descripción</th>
-                        <th style="width: 10%"></th>
+                        <th ></th>
                     </thead>
                     <tbody id="tablaRegistros">
                         @include('registros.table-desktop')

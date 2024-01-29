@@ -15,7 +15,7 @@
     <td class="table_descripcion" data-id="{{ $registro->id }}" id="descripcion{{ $registro->id }}">
         {{ $registro->descripcion }} 
     </td>
-    <td style="width: 10%">
+    <td>
         <a href="{{ route('registros.show', $registro)  }}" class="btn-link"> <i class="las la-search" style="font-size: 22px"></i></a>
         <a href="{{ route('registros.edit', $registro)  }}" class="btn-link"> <i class="las la-pen" style="font-size: 22px"></i></a>
         <form action="{{ route('registros.destroy', $registro) }}" method="POST" style="display:inline;">

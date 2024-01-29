@@ -29,6 +29,14 @@ class persona extends Model
     public function asociado(){
         return $this->hasMany(asociado::class, 'id_persona');
     }
+    
+    public function vinculo1(){
+        return $this->hasMany(vinculoPersona::class, 'id_persona1');
+    }
+    
+    public function vinculo2(){
+        return $this->hasMany(vinculoPersona::class, 'id_persona2');
+    }
 }
 
 

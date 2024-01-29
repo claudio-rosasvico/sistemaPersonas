@@ -69,7 +69,7 @@
         <div class="card body mb-3 text-center">
             <input type="text" class="form-control" name="tipo de cargo" id="tipo_cargo" aria-describedby="helpId"
                 placeholder="Nombre" />
-            <button type="button" class="btn btn-sm btn-primary mt-3" data-id="tipo_cargo">
+            <button type="button" class="btn btn-sm btn-primary mt-3 parametro" data-id="tipo_cargo">
                 Cargar Cargo
             </button>
         </div>

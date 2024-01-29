@@ -63,7 +63,21 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                <h6 class="title">Datos personales</h6> 
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <h6 class="title">Datos personales</h6>
+                    </div>
+                    <div class="col text-right">
+                        <a type="button" class="btn btn-sm btn-primary" style="color: white !important"
+                        href="{{ route('parametros.vinculos', $persona) }}">
+                        Crear Vínculo
+                    </a>
+                        <a type="button" class="btn btn-sm btn-primary" style="color: white !important"
+                        href="{{ route('parametros.cargos', $persona) }}">
+                        Crear Cargo
+                    </a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -117,7 +131,8 @@
                     <h6 class="title">Registros</h6>
                 </div>
                 <div class="col text-right">
-                    <a type="button" class="btn btn-sm btn-primary" style="color: white !important" href="{{ route('registros.create') }}">
+                    <a type="button" class="btn btn-sm btn-primary" style="color: white !important"
+                        href="{{ route('registros.create') }}">
                         Crear Registro
                     </a>
                 </div>
@@ -143,12 +158,7 @@
                                 {{ isset($registro->fecha) ? $registro->fecha : '' }}
                             </td>
                             <td class="table_descripcion">
-                                {{ $registro->descripcion }} Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Accusantium reprehenderit voluptate ex. Amet eius, ipsam aperiam quaerat itaque
-                                explicabo, tenetur, atque quis at voluptas dolores libero recusandae! Veritatis, cumque
-                                eos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, rerum possimus
-                                quibusdam perspiciatis tempore doloribus, nemo vel vitae impedit est molestias omnis
-                                quo? Similique eum eaque est enim? Possimus, est.
+                                {{ $registro->descripcion }}
                             </td>
                             <td style="width: 15%">
                                 @if($registro->asociado->isNotEmpty())

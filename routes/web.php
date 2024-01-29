@@ -47,7 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::resource('personas', PersonaController::class)->except('store');
 	Route::post('personas/store', [PersonaController::class, 'store']);
-	/* Route::post('personas/destroy', [PersonaController::class, 'destroy'])->name('personas.destroy'); */
 	Route::post('/personas/table', [PersonaController::class, 'table'])->name('personas.table');
 	Route::get('/productos/getLocalidades/{id_provincia}', [PersonaController::class, 'getLocalidades']);
 	Route::get('personas/getPersona/{id_persona}', [PersonaController::class, 'getPersona']);
@@ -60,6 +59,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('parametros', ParametrosController::class)->except('store');
 	Route::post('parametros/store', [ParametrosController::class, 'store']);
+	Route::post('/parametros/vinculos/store', [ParametrosController::class, 'vinculoStore']);
+	Route::post('/parametros/cargos/store', [ParametrosController::class, 'cargoStore']);
+	Route::get('parametros/vinculos/{id_persona}', [ParametrosController::class, 'getVinculos'])->name('parametros.vinculos');
+	Route::get('parametros/cargos/{id_persona}', [ParametrosController::class, 'getcargos'])->name('parametros.cargos');
 
 });
 

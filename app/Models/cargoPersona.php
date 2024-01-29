@@ -10,7 +10,7 @@ class cargoPersona extends Model
     use HasFactory;
 
     protected $table = 'cargo_personas';
-    protected $fillable = ['id', 'nombre', 'id_tipo_cargo', 'id_nivel', 'id_persona', 'id_localidad'];
+    protected $fillable = ['id', 'nombre', 'id_tipo_cargo', 'id_nivel', 'id_persona', 'id_localidad', 'fecha_inicio', 'fecha_final', 'cargo_actual'];
 
     public function tipoCargo(){
         return $this->belongsTo(tipoCargo::class, 'id_tipo_cargo');
