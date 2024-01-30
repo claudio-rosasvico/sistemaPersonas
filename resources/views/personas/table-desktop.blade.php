@@ -10,7 +10,9 @@
         {{ $persona->nombre }} {{ $persona->apellido }}
     </td>
     <td>
-        {{ isset($persona->cargo) && $persona->cargo->count() > 0? $persona->cargo->first()->nombre : 'Sin cargo actualmente' }}
+        {{ $persona->cargo->count() > 0 ? 
+            ($persona->cargo->where('fecha_final', null)->sortByDesc('fecha_inicio')->first()->tipoCargo->nombre . ' / ' . $persona->cargo->first()->nivel->nombre) 
+            : 'Sin cargo' }} 
     </td>
     <td>
         Unión por la Patria

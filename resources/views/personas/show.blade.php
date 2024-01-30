@@ -19,7 +19,9 @@
                         <h3>{{ $persona->nombre }} {{ $persona->apellido }}</h3>
                     </div>
                     <p class="description">
-                        {{ $persona->cargo->count() > 0 ? ($persona->cargo->first()->tipoCargo->nombre . ' / ' . $persona->cargo->first()->nivel->nombre) : 'Sin cargo' }}
+                        {{ $persona->cargo->count() > 0 ? 
+                            ($persona->cargo->where('fecha_final', null)->sortByDesc('fecha_inicio')->first()->tipoCargo->nombre . ' / ' . $persona->cargo->first()->nivel->nombre) 
+                            : 'Sin cargo' }}                        
                         {{-- {{ $persona->cargo->first()->nivel->nombre }} --}}
                     </p>
                 </div>
@@ -108,7 +110,9 @@
                                 {{ $persona->localidad->nombre }}
                             </td>
                             <td>
-                                {{ $persona->cargo->where('cargo_actual', 0)->count() > 0 ? $persona->cargo->where('cargo_actual', 0)->sortByDesc('fecha_final')->first()->tipoCargo->nombre : 'Sin Cargo Terminado' }}
+                                {{ $persona->cargo->count() > 0 ? 
+                                    ($persona->cargo->where('fecha_final', '!=', null)->sortByDesc('fecha_final')->first()->tipoCargo->nombre . ' / ' . $persona->cargo->first()->nivel->nombre) 
+                                    : 'Sin cargo Terminado' }} 
 
                             </td>
                             <td>

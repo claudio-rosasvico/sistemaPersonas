@@ -10,7 +10,9 @@
         <h4 class="card-title text-center">{{ $persona->nombre }}
             {{ $persona->apellido }}</h4>
         <h6 class="card-subtitle mb-2 text-body-secondary text-center">
-            "{{ isset($persona->cargo) && $persona->cargo->count() > 0? $persona->cargo->first()->nombre : 'Sin cargo actualmente' }}"
+            "{{ $persona->cargo->count() > 0 ? 
+                ($persona->cargo->where('fecha_final', null)->sortByDesc('fecha_inicio')->first()->tipoCargo->nombre . ' / ' . $persona->cargo->first()->nivel->nombre) 
+                : 'Sin cargo' }} "
         </h6>
         <div class="row container justify-content-between mt-3">
             <a href="{{ route('personas.show', $persona)  }}" class="btn-link"> <i class="las la-search" style="font-size: 22px"></i></a>
