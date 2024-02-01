@@ -44,12 +44,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-lg-4 ">
+                            <div class="col-12 col-lg-3 ">
                                 <label for="profesion" class="form-label">Profesion</label>
                                 <input type="text" class="form-control" name="profesion" id="profesion"
                                     aria-describedby="helpId" placeholder="Profesion" value="{{ isset($persona->profesion) ? $persona->profesion : null }}"/>
                             </div>
-                            <div class="col-12 col-lg-4 ">
+                            <div class="col-12 col-lg-3 ">
                                 <label for="id_provincia">Provincia</label>
                                 <select id="id_provincia" class="form-control" name="id_provincia">
                                     @foreach ($provincias as $provincia)
@@ -58,14 +58,24 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-12 col-lg-4 ">
+                            <div class="col-12 col-lg-3 ">
                                 <label for="id_localidad">Localidad</label>
                                 <select id="id_localidad" class="form-control required" name="id_localidad"
-                                    placeholder='Localidad'>
-                                    <option value="{{ isset($persona) ? $persona->id_localidad : '' }}">{{ isset($persona) ? $persona->localidad->nombre : ' - Primero seleccione Provincia - ' }}</option>
-                                </select>
-                            </div>
+                                placeholder='Localidad'>
+                                <option value="{{ isset($persona) ? $persona->id_localidad : '' }}">{{ isset($persona) ? $persona->localidad->nombre : ' - Primero seleccione Provincia - ' }}</option>
+                            </select>
                         </div>
+                        <div class="col-12 col-lg-3 ">
+                            <label for="id_agrupacion">Agrupación</label>
+                            <select id="id_agrupacion" class="form-control" name="id_agrupacion">
+                                <option value=""> - Seleccione Agrupación - </option>
+                                @foreach ($agrupaciones as $agrupacion)
+                                <option value="{{ $agrupacion->id }}" {{ isset($persona->id_agrupacion) && $persona->id_agrupacion == $agrupacion->id ? 'selected' : '' }}>
+                                    {{ $agrupacion->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                         <div class="row">
                             <div class="col-12 col-lg-6 ">
                                 <label for="twitter" class="form-label">Twitter</label>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonaRequest;
+use App\Models\agrupacion;
 use App\Models\localidad;
 use App\Models\nivelCargo;
 use App\Models\persona;
@@ -36,7 +37,8 @@ class PersonaController extends Controller
             'localidades' => localidad::all(),
             'provincias'  => provincia::all(),
             'cargos'      => tipoCargo::all(),
-            'nivelesCargo' => nivelCargo::all()
+            'nivelesCargo' => nivelCargo::all(),
+            'agrupaciones' => agrupacion::all()
         ];
 
         return view('personas.create', $data);
@@ -82,6 +84,7 @@ class PersonaController extends Controller
             'provincias'  => provincia::all(),
             'cargos'      => tipoCargo::all(),
             'nivelesCargo' => nivelCargo::all(),
+            'agrupaciones' => agrupacion::all(),
             'persona'   => $persona
         ];
 

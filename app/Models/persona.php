@@ -12,10 +12,14 @@ class persona extends Model
     use HasFactory;
 
     protected $table = 'personas';
-    protected $fillable = [ 'id', 'nombre', 'apellido', 'fecha_nac', 'profesion', 'id_localidad', 'foto', 'nombre_foto', 'twitter', 'facebook', 'instagram', 'tiktok', 'id_user'];
+    protected $fillable = [ 'id', 'nombre', 'apellido', 'fecha_nac', 'profesion', 'id_localidad', 'foto', 'nombre_foto', 'twitter', 'facebook', 'instagram', 'tiktok', 'id_user', 'id_agrupacion'];
 
     public function localidad(){
         return $this->belongsTo(localidad::class, 'id_localidad');
+    }
+
+    public function agrupacion(){
+        return $this->belongsTo(agrupacion::class, 'id_agrupacion');
     }
 
     public function registro(){

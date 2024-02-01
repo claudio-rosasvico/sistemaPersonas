@@ -11,17 +11,24 @@
                     <div class="block block-two"></div>
                     <div class="block block-three"></div>
                     <div class="block block-four"></div> --}}
-                    <div href="#">
-                        @if ($persona->nombre_foto)
-                        <img class="avatar" src="{{ asset('storage/assets/img/perfil'). '/' . $persona->nombre_foto }}"
-                            alt="">
-                        @endif
+                    <div>
+                        <div class="perfil_persona">
+                            @if ($persona->nombre_foto)
+                            <img class="avatar"
+                                src="{{ asset('storage/assets/img/perfil'). '/' . $persona->nombre_foto }}" alt="">
+                            @endif
+                            @if ($persona->id_agrupacion)
+                            <img class="agrupacion"
+                                src="{{ asset('storage/assets/img/agrupacion'). '/' . $persona->agrupacion->nombre_foto }}"
+                                alt="">
+                            @endif
+                        </div>
                         <h3>{{ $persona->nombre }} {{ $persona->apellido }}</h3>
                     </div>
                     <p class="description">
                         {{ $persona->cargo->count() > 0 ? 
                             ($persona->cargo->where('fecha_final', null)->sortByDesc('fecha_inicio')->first()->tipoCargo->nombre . ' / ' . $persona->cargo->first()->nivel->nombre) 
-                            : 'Sin cargo' }}                        
+                            : 'Sin cargo' }}
                         {{-- {{ $persona->cargo->first()->nivel->nombre }} --}}
                     </p>
                 </div>
@@ -71,13 +78,13 @@
                     </div>
                     <div class="col text-right">
                         <a type="button" class="btn btn-sm btn-primary" style="color: white !important"
-                        href="{{ route('parametros.vinculos', $persona) }}">
-                        Crear Vínculo
-                    </a>
+                            href="{{ route('parametros.vinculos', $persona) }}">
+                            Crear Vínculo
+                        </a>
                         <a type="button" class="btn btn-sm btn-primary" style="color: white !important"
-                        href="{{ route('parametros.cargos', $persona) }}">
-                        Crear Cargo
-                    </a>
+                            href="{{ route('parametros.cargos', $persona) }}">
+                            Crear Cargo
+                        </a>
                     </div>
                 </div>
             </div>
@@ -112,7 +119,7 @@
                             <td>
                                 {{ $persona->cargo->count() > 0 ? 
                                     ($persona->cargo->where('fecha_final', '!=', null)->sortByDesc('fecha_final')->first()->tipoCargo->nombre . ' / ' . $persona->cargo->first()->nivel->nombre) 
-                                    : 'Sin cargo Terminado' }} 
+                                    : 'Sin cargo Terminado' }}
 
                             </td>
                             <td>
