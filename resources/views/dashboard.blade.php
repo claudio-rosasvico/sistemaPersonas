@@ -54,7 +54,6 @@
 
                                         {{session('status')}}
                                     </div>
-
                                 </div>
                             </div>
                         </div>

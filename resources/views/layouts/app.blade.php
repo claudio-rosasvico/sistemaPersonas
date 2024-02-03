@@ -1,58 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>Sistema de Seguimiento</title>
-        <!-- Favicon -->
-        {{-- <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('black') }}/img/apple-icon.png"> --}}
-        <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/dedos_V.png">
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-        <!-- Icons -->
-        <link href="{{ asset('black') }}/css/nucleo-icons.css" rel="stylesheet" />
-        <!-- CSS -->
-        <link href="{{ asset('black') }}/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-        <link href="{{ asset('black') }}/css/theme.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    </head>
-    <body class="{{ $class ?? '' }}">
-        @auth()
-            <div class="wrapper">
-                    @include('layouts.navbars.sidebar')
-                <div class="main-panel">
-                    @include('layouts.navbars.navbar')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                    <div class="content">
-                        @yield('content')
-                    </div>
+    <title>Sistema de Seguimiento</title>
+    <!-- Favicon -->
+    {{-- <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('black') }}/img/apple-icon.png"> --}}
+    <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/dedos_V.png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{{ asset('black') }}/css/nucleo-icons.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link href="{{ asset('black') }}/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="{{ asset('black') }}/css/theme.css" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
 
-                    @include('layouts.footer')
-                </div>
-            </div>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        @else
+<body class="{{ $class ?? '' }}">
+    @auth()
+    @if (auth()->user()->tipo_user != 0)
+
+    <div class="wrapper">
+        @include('layouts.navbars.sidebar')
+        <div class="main-panel">
             @include('layouts.navbars.navbar')
-            <div class="wrapper wrapper-full-page">
-                <div class="full-page {{ $contentClass ?? '' }}">
-                    <div class="content">
-                        <div class="container">
-                            @yield('content')
-                        </div>
-                    </div>
-                    @include('layouts.footer')
+
+            <div class="content">
+                @yield('content')
+            </div>
+
+            @include('layouts.footer')
+        </div>
+    </div>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+    @else
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col text-center">
+                <h1>Solicita acceso al administrador</h1>
+            </div>
+        </div>
+    </div>
+    @endif
+    @else
+    @include('layouts.navbars.navbar')
+    <div class="wrapper wrapper-full-page">
+        <div class="full-page {{ $contentClass ?? '' }}">
+            <div class="content">
+                <div class="container">
+                    @yield('content')
                 </div>
             </div>
-        @endauth
-        {{-- <div class="fixed-plugin">
+            @include('layouts.footer')
+        </div>
+    </div>
+    @endauth
+    {{-- <div class="fixed-plugin">
             <div class="dropdown show-dropdown">
                 <a href="#" data-toggle="dropdown">
                 <i class="fa fa-cog fa-2x"> </i>
@@ -89,24 +103,24 @@
                 </ul>
             </div>
         </div> --}}
-        <script src="{{ asset('black') }}/js/core/jquery.min.js"></script>
-        <script src="{{ asset('black') }}/js/core/popper.min.js"></script>
-        <script src="{{ asset('black') }}/js/core/bootstrap.min.js"></script>
-        <script src="{{ asset('black') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-        <!--  Google Maps Plugin    -->
-        <!-- Place this tag in your head or just before your close body tag. -->
-        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
-        <!-- Chart JS -->
-        {{-- <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script> --}}
-        <!--  Notifications Plugin    -->
-        <script src="{{ asset('black') }}/js/plugins/bootstrap-notify.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script src="{{ asset('black') }}/js/black-dashboard.min.js?v=1.0.0"></script>
-        <script src="{{ asset('black') }}/js/theme.js"></script>
-        
+    <script src="{{ asset('black') }}/js/core/jquery.min.js"></script>
+    <script src="{{ asset('black') }}/js/core/popper.min.js"></script>
+    <script src="{{ asset('black') }}/js/core/bootstrap.min.js"></script>
+    <script src="{{ asset('black') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
+    <!-- Chart JS -->
+    {{-- <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script> --}}
+    <!--  Notifications Plugin    -->
+    <script src="{{ asset('black') }}/js/plugins/bootstrap-notify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('black') }}/js/black-dashboard.min.js?v=1.0.0"></script>
+    <script src="{{ asset('black') }}/js/theme.js"></script>
 
-        <script>
-            $(document).ready(function() {
+
+    <script>
+        $(document).ready(function() {
                 $().ready(function() {
                     $sidebar = $('.sidebar');
                     $navbar = $('.navbar');
@@ -201,7 +215,8 @@
                     });
                 });
             });
-        </script>
-        @stack('js')
-    </body>
+    </script>
+    @stack('js')
+</body>
+
 </html>
