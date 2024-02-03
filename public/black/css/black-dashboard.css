@@ -1769,9 +1769,10 @@ pre code {
   background-color: rgba(255, 255, 255, 0.075);
 }
 
-.tablaPersonasMovil, .tableRegistrosMovil {
+.tablaPersonasMovil, .tableRegistrosMovil, .tablaAfiliadosMovil {
   display: none;
 }
+
 
 @media (max-width: 575.98px) {
   .table-responsive-sm {
@@ -1802,7 +1803,7 @@ pre code {
     display: none;
   }
 
-  .tablaPersonasMovil, .tableRegistrosMovil {
+  .tablaPersonasMovil, .tableRegistrosMovil, .tablaAfiliadosMovil {
     display: block;
   }
 }
@@ -17766,8 +17767,6 @@ Copyright (c) 2015 Daniel Eden
   bottom: 0;
   right: 0;
   width: 50px;
-  
-
 }
 
 .card-tasks {

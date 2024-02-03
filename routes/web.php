@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AfiliadoController;
 use App\Http\Controllers\AsociadoController;
 use App\Http\Controllers\ParametrosController;
 use App\Http\Controllers\PersonaController;
@@ -66,3 +67,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::resource('afiliados', AfiliadoController::class)->except('store');
+Route::post('/afiliados/table', [AfiliadoController::class, 'table'])->name('afiliados.table');
