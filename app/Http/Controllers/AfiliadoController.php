@@ -9,7 +9,7 @@ class AfiliadoController extends Controller
 {
     public function index(){
 
-        $afiliados = afiliado::take(100)->get();
+        $afiliados = afiliado::take(100)->orderBy('nombre_apellido')->get();
 
         return view('afiliados.index', compact('afiliados'));
     }
@@ -19,9 +19,9 @@ class AfiliadoController extends Controller
         $search = $request->search;
         if ($search) {
             $afiliados = afiliado::where('nombre_apellido', 'LIKE', '%' . $search . '%')
-                ->orWhere('DNI', 'LIKE', '%' . $search . '%')->take(100)->get();
+                ->orWhere('DNI', 'LIKE', '%' . $search . '%')->take(100)->orderBy('nombre_apellido')->get();
         } else {
-            $afiliados = afiliado::take(100)->get();
+            $afiliados = afiliado::take(100)->orderBy('nombre_apellido')->get();
         }
 
         $desktop = view('afiliados.table-desktop', compact('afiliados'))->render();
