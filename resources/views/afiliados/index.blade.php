@@ -53,7 +53,7 @@
                                 <tr>
                                     <th>DNI</th>
                                     <th>Género</th>
-                                    <th>Apellido y Nombre</th>
+                                    <th>Apellido y Nombre </th>
                                     <th>Domicilio</th>
                                     <th>Sección</th>
                                     <th>Circuito</th>
