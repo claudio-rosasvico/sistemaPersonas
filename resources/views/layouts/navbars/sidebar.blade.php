@@ -1,8 +1,8 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-mini"><img src="{{ asset('assets/img/dedos_V.png')}}" alt=""></a>
-            <a href="#" class="simple-text logo-normal">Agrupación</a>
+            <a href="#" class="simple-text logo-mini"><i class="las la-user" style="font-size: 2rem"></i></a>
+            <a href="#" class="simple-text logo-normal">RR HH</a>
         </div>
         <ul class="nav">
             <li @if ($pageSlug == 'home' ) class="active " @endif>
